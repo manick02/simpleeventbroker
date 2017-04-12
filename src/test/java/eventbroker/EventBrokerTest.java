@@ -1,9 +1,6 @@
 package eventbroker;
-
-
 import org.junit.Assert;
 import org.junit.Test;
-import org.w3c.dom.events.Event;
 
 public class EventBrokerTest {
     @Test
@@ -35,6 +32,7 @@ public class EventBrokerTest {
                 Assert.assertTrue("assertion passed",eventPayload==payload);
             }
         });
+
         eventBroker.publishEvent("sampleTopic", payload);
     }
 }
