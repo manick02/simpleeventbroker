@@ -21,9 +21,6 @@ public class EventBroker {
 
     public static EventBroker getInstance()
     {
-        if (instance==null) {
-            instance = new EventBroker();
-        }
 
         return instance;
     }
