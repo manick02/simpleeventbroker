@@ -3,6 +3,6 @@ package eventbroker;
 /**
  * Created by 8420 on 11/04/17.
  */
-public interface EventHandler {
-    public void handleEvent(EventPayload eventPayload);
+public interface EventHandler<T extends EventPayload> {
+     void handleEvent(T eventPayload) ;
 }

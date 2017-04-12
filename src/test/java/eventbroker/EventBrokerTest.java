@@ -3,6 +3,7 @@ package eventbroker;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.w3c.dom.events.Event;
 
 public class EventBrokerTest {
     @Test
@@ -20,5 +21,20 @@ public class EventBrokerTest {
         MockEventHandler eventHandler = new MockEventHandler();
         eventBroker.registerEventHandler(topic,eventHandler);
         Assert.assertTrue(eventBroker!=null);
+    }
+
+    @Test
+    public void publishEvent()
+    {
+        EventBroker eventBroker = EventBroker.getInstance();
+        String topic = "sampleTopic";
+        MockPayload payload = new MockPayload();
+        eventBroker.registerEventHandler("sampleTopic", new EventHandler<MockPayload>() {
+            @Override
+            public void handleEvent(MockPayload eventPayload) {
+                Assert.assertTrue("assertion passed",eventPayload==payload);
+            }
+        });
+        eventBroker.publishEvent("sampleTopic", payload);
     }
 }

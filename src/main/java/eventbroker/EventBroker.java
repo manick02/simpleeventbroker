@@ -21,7 +21,6 @@ public class EventBroker {
 
     public static EventBroker getInstance()
     {
-
         return instance;
     }
 
@@ -37,4 +36,12 @@ public class EventBroker {
         handler.add(eventHandler);
     }
 
+    public static <T> void publishEvent(String sampletopic, EventPayload<T> payload) {
+        List<EventHandler> eventHandlers = topicHandlers.get(sampletopic);
+        for (EventHandler eventHandler:eventHandlers)
+        {
+            eventHandler.handleEvent(payload);
+        }
+
+    }
 }
