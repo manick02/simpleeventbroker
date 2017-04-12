@@ -9,12 +9,17 @@ public class EventBroker {
 
     private static EventBroker instance;
     private static ConcurrentHashMap<String,List<EventHandler>> topicHandlers = new ConcurrentHashMap<>();
+    static
+    {
+        instance = new EventBroker();
+        topicHandlers = new ConcurrentHashMap<>();
+    }
     private EventBroker()
     {
 
     }
 
-    public synchronized static EventBroker getInstance()
+    public static EventBroker getInstance()
     {
         if (instance==null) {
             instance = new EventBroker();
